@@ -1,0 +1,85 @@
+## 第三次上机实验
+## 一、实验目的：
+<br>掌握Java中抽象类和抽象方法的定义； 
+<br>掌握Java中接口的定义，熟练掌握接口的定义形式以及接口的实现方法
+<br>了解异常的使用方法，并在程序中根据输入情况做异常处理
+
+## 二、实验要求：
+<br>某学校为了给学生提供勤工俭学机会，也减轻授课教师的部分压力，准许博士研究生参与课程的助教工作。此时，该博士研究生有双重身份：学生和助教教师。
+<br>设计两个管理接口：学生管理接口和教师管理接口。学生接口必须包括缴纳学费、查学费的方法；教师接口包括发放薪水和查询薪水的方法。
+<br>设计博士研究生类，实现上述的两个接口，该博士研究生应具有姓名、性别、年龄、每学期学费、每月薪水等属性。（其他属性及方法，可自行发挥）
+<br>编写测试类，并实例化至少两名博士研究生，统计他们的年收入和学费。根据两者之差，算出每名博士研究生的年应纳税金额（国家最新工资纳税标准，请自行检索）。
+
+## 三、实验方法：
+<br>在 博士研究生类中实现各个接口定义的抽象方法;
+<br>对年学费和年收入进行统计，用收入减去学费，求得纳税额；
+<br>国家最新纳税标准（系数），属于某一时期的特定固定值，与实例化对象没有关系，考虑如何用static  final修饰定义。
+<br>实例化研究生类时，可采用运行时通过main方法的参数args一次性赋值，也可采用Scanner类实现运行时交互式输入。
+<br>根据输入情况，要在程序中做异常处理
+
+## 四、核心方法
+<br>这段代码主要是跟text中scanner有关的代码，体现了通过 Scanner 类来获取用户的输入，之中也使用到了if判断语句等。
+```java
+import java.util.Scanner;
+class Graduate implements StudentInterface,TeacherInterface{
+    String name;
+    String sex;
+    int age;
+    double fee;
+    double pay;
+    public void setPay(double pay) {
+        this.pay = pay * 12;
+        System.out.println("年收入为：" + this.pay);
+    }
+    public void getPay(double pay) {
+        this.pay = pay * 12;
+        System.out.println("年收入为：" + this.pay);
+    }
+    public void setFee(double fee) {
+        this.fee = fee;
+        System.out.println("学费设置为：" + this.fee);
+    }
+    public void getFee(double fee) {
+        this.fee = fee;
+        System.out.println("学费为：" + this.fee);
+    }
+
+    public boolean Loan(){
+        if ((this.pay - this.fee) < 2000) {
+            System.out.println("你的年收入" + this.pay + ",减去学费" + this.fee + "等于" + (this.pay - this.fee));
+            return true;
+        }
+        System.out.println("你的年收入" + this.pay + ",减去学费" + this.fee + "等于" + (this.pay - this.fee));
+        return false;
+    }
+
+    public static void main(String[] args) {
+
+        Graduate graduate = new Graduate();
+        graduate.sex = "男";
+        graduate.name = "杰哥";
+        System.out.println("你好:" + graduate.name);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("请输入你的月工资：");
+        double pay = scanner.nextDouble();
+        graduate.setPay(pay);
+        System.out.println("请输入你的学费：");
+        double fee = scanner.nextDouble();
+        graduate.setFee(fee);
+        boolean flag = graduate.Loan();
+        if (flag) {
+            System.out.println("你家房子蛮大的吗");
+        }else {
+            System.out.println("可以随心所以的买泡面和小泡芙");
+        }
+    }
+}
+```
+
+### 五、实验结果
+详情请见插图（滑稽）
+
+
+### 七、实验感想
+<br>学到了接口的用法，明白了接口是解决Java无法使用多继承的一种手段，但是接口在实际中更多的作用是制定标准的。或者我们可以直接把接口理解为100%的抽象类，既接口中的方法必须全部是抽象方法。
+同时这次实验使我可以编译简单的面相对象的程序，虽说是在在同学的帮助下解决了这次实验。总体来讲这次实验是我对java充满了决心。
