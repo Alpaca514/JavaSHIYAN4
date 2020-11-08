@@ -77,7 +77,6 @@ class Graduate implements StudentInterface,TeacherInterface{
 ```
 
 ### 五、实验结果
-详情请见插图（滑稽）
 
 
 ### 七、实验感想
